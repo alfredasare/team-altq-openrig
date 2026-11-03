@@ -22,11 +22,9 @@ Two layers:
 - Varay and Seris: no commits or pushes.
 
 ## Modes
-- **The seats started in accept-edits mode** (3 Nov 2026): file edits run, and other commands prompt unless they are
-  allowed.
-- **Auto mode** lets Claude Code run routine actions on its own judgment and ask about risky ones. The Gaya team runs
-  in it since 29 Oct 2026, at Alfred's request, because supervised mode stopped its builder 47 times in a day.
-  Switching this team is Alfred's call: `rig seat set-permissions <seat> --mode auto`, from the seat's next launch.
+- **Auto mode for every seat** (Alfred, 3 Nov 2026: "can't be approving every 5 seconds"). Claude Code runs routine
+  actions on its own judgment and asks only about risky ones, and the guard still forces a prompt for the gated
+  tier. It was set with `rig seat set-permissions <seat> --mode auto` and applies from each seat's launch.
 - **The gated and never tiers hold in every mode.**
 - **Back to accept-edits** for a seat: `rig seat set-permissions <seat> --mode acceptEdits --reason "<why>"`.
 
