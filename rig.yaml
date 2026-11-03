@@ -107,7 +107,7 @@ pods:
         cwd: desks/agrona
 
   - id: tessia
-    label: "Tessia · Release & Infra"
+    label: "Tessia · Release & Ops"
     members:
       - id: ops
         label: "Tessia Eralith"
