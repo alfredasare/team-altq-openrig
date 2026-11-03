@@ -22,6 +22,12 @@ When an item is picked up, it leaves this file for the journal.
 - [ ] **The four delisted PIMCO muni funds** (1140392, 1170300, 1181504, 1181506) are in the batch's fund list though
   they filed to deregister in Sep 2025. Keep them, or drop them? Their highlights read fails on a combined
   9-fund report. Brings it back: Alfred's or Florian's call on the fund list.
+- [ ] **Suspected: the prospectus in force skips amendments.** `selectProspectusInForce` (packages/agents/src/extract/
+  prospectusLanes/) takes only N-2, 485BPOS and 486BPOS, so an N-2/A, POS 8C or POS AMI is never read. On prod, 37
+  of 252 funds have a newer archived amendment than the prospectus v2 read; Partners Group 1447247 reads its 2008 N-2
+  though a full N-2/A of 29 Dec 2025 exists. Not yet shown to make a served value wrong (PIMCO 1140392's 0.705 vs
+  1.19 may be two measures). Next: Agrona compares the 37 funds' prospectus values with their newest amendment.
+  Brings it back: that check, or Alfred resuming app changes.
 - [ ] **Money market funds in `holdings_count`:** 2061233's Fidelity Treasury Portfolio counts as a holding (14) and as
   cash in `nport_cash_total`; without it the count is 13. Brings it back: Alfred resuming 40act app changes.
 
