@@ -15,7 +15,7 @@ work with **Alfred's own CLIs and logins** (`git`, `gh` as `alfredasare` in the 
 | `wren-challenge@altq` | Wren | The challenge of every real plan before it reaches Alfred; never builds |
 | `ellie-ux@altq` | Ellie | The walk-through of every UI change with Playwright on her own ports; never edits |
 | `agrona-data@altq` | Agrona | Values against the filings (stored copies and SEC), dev and prod reads; never edits code |
-| `tessia-ops@altq` | Tessia | CI, pushes and PRs, GCP deploys, migrations, sync v2 batch operations |
+| `tessia-ops@altq` | Tessia | Google Cloud and infra (Cloud Run, Cloud Build, IAM, secrets, logs, costs), CI, releases, migrations, sync v2 batches |
 | `seris-security@altq` | Seris | Probes auth, tiers, partner scoping and billing on scratch copies; evidence, not fixes |
 
 Your own role and persona are in your desk's `CLAUDE.md`. Paths below are relative to `~/AltQ/team-altq/`.

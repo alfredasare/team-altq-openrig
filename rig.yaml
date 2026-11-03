@@ -2,7 +2,7 @@ version: "0.2"
 name: altq
 summary: >
   AltQ's 40act team. Arthur leads; Gideon (builder), Kezess (reviewer), Varay (QA), Ellie (experience),
-  Agrona (values against the filings), Tessia (release and operations) and Seris (security) work on the 40act
+  Agrona (values against the filings), Tessia (release, Google Cloud and infra) and Seris (security) work on the 40act
   platform using Alfred's own CLIs, and Wren challenges plans. Gated actions (merges, pushes to main or
   development, prod writes, deploys) always wait for Alfred; see CLAUDE.md and hooks/guard.py.
 
@@ -107,7 +107,7 @@ pods:
         cwd: desks/agrona
 
   - id: tessia
-    label: "Tessia · Release & Ops"
+    label: "Tessia · Release & Infra"
     members:
       - id: ops
         label: "Tessia Eralith"
