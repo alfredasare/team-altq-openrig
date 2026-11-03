@@ -67,5 +67,8 @@ means a re-read; say so and the cost before running.
   - `Select-String -Path runs\v2.log -Pattern 'failed, nothing more|ERR '`.
 - **The 3 Nov 2026 batch:** 263 prod funds (live, with a stored report, without the AIP Alternative Lending Funds
   1709447 and 1709406). No seat runs sync v2 against prod funds until the journal says it finished.
+- **Not synced (Alfred, 3 Nov 2026):** the four PIMCO muni funds 1140392, 1170300, 1181504 and 1181506, delisted
+  in Aug 2025 and deregistering; listed closed-end funds, not interval or tender offer funds. Take them off any fund
+  list a run uses.
 - **A storage error on every step** ("norm object missing from storage") has meant the VM's storage settings were
   wrong (the key file path), not missing files.
