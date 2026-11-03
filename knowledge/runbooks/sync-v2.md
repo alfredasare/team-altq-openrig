@@ -38,6 +38,8 @@ means a re-read; say so and the cost before running.
 - **Before any clearing,** each fund's storage is read. If it can't be read (an expired Google sign-in), the fund
   stops before anything is deleted.
 - **A fund's output** is printed as one block; `<out>/<cik>.json` holds the run and the Free-key comparison.
+- **Querying what a run wrote:** `facts_v2` is keyed by `fundId`, `v2_readings` by `cik`. A `cik` query on
+  `facts_v2` returns 0 rows, which looks like "nothing written" (Tessia, 3 Nov 2026).
 - **Not duplicates:**
   - derive writes a new revision of a series when its explanation changes, even with the same value (e.g. a
     liquidity test whose eligible amount moved);

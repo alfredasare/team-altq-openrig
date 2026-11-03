@@ -22,7 +22,8 @@ file current. A ruling that conflicts with a filing is raised through Arthur, ne
   - Nil's tag keys `management_fee`, `net_operating_expenses`, `amt_pay_one_yr_banks_borr` and `monthly_flows` are
     dynamic (Alfred: "Don't make them static").
 - **Blank stays blank** (Alfred, 30 Oct; refined 1 Nov). Never store 0 for a printed "None" or a missing item. A fee
-  is 0 only when the filing states the fund charges none.
+  is 0 only when the filing states the fund charges none. A fee table's printed "None" alone is not that statement
+  (Alfred, 3 Nov; Partners Group 1447247's Class I and M sales load).
 - **No fallbacks on AQFID page 1's fee row** (Alfred, 2 Nov): only Nil's two N-CEN keys. Nil is removing the UI's
   other fallbacks.
 - **No string or pattern matching for extraction** (Alfred). Readers use the structure (XML items, XBRL, tables) or a

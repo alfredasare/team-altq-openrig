@@ -17,19 +17,19 @@ When an item is picked up, it leaves this file for the journal.
 - [ ] **A worker job for sync v2** (it is CLI only).
 - [ ] **Re-convert prod's lost-table documents** (norm-v3).
 - [ ] **The offer-results churn:** 2–6 rows re-added each run, then removed by source order.
-- [ ] **Neuberger 2041175's FY2025 annual report** is too large for one model read; it needs the report read in parts.
-  v1 did this: `retrieve.splitIntoWindows` (packages/corpus/src/retrieve/windows.ts; 40k-char windows, 8k overlap,
-  cut at headings, only on the Qwen profile) with v1's merge in packages/agents/src/extract/windowMerge.ts. Sync v2
-  uses neither. Brings it back: Alfred resuming 40act app changes.
-- [ ] **The four delisted PIMCO muni funds** (1140392, 1170300, 1181504, 1181506) are in the batch's fund list though
-  they filed to deregister in Sep 2025. Keep them, or drop them? Their highlights read fails on a combined
-  9-fund report. Brings it back: Alfred's or Florian's call on the fund list.
-- [ ] **Suspected: the prospectus in force skips amendments.** `selectProspectusInForce` (packages/agents/src/extract/
-  prospectusLanes/) takes only N-2, 485BPOS and 486BPOS, so an N-2/A, POS 8C or POS AMI is never read. On prod, 37
-  of 252 funds have a newer archived amendment than the prospectus v2 read; Partners Group 1447247 reads its 2008 N-2
-  though a full N-2/A of 29 Dec 2025 exists. Not yet shown to make a served value wrong (PIMCO 1140392's 0.705 vs
-  1.19 may be two measures). Next: Agrona compares the 37 funds' prospectus values with their newest amendment.
-  Brings it back: that check, or Alfred resuming app changes.
+- [ ] **XBRL fee reader: don't serve a tagged total that disagrees with its tagged lines.** Keystone 1788420's POS AMI
+  0001213900-25-057262 tags the Class I and Y totals the wrong way round (served I 3.21 / Y 3.11; printed I 3.11 /
+  Y 3.21; Agrona, 3 Nov). Alfred chose to re-run it as planned, so prod shows the swap until this lands. Gideon.
+  Brings it back: Alfred resuming 40act app changes.
+- [ ] **Fallback reader writes 0 from a bare "None".** Partners Group 1447247 serves sales load 0 for Classes I and M
+  from the fee table's "None"; under the ruling (3 Nov refinement) they stay blank. Brings it back: Alfred resuming
+  40act app changes.
+- [ ] **`class_primary_audience` misses a fund-wide audience sentence.** 1447247 and 1788420 limit every class to
+  qualified clients and accredited investors on the cover; the fallback asked and served nothing (Agrona, 3 Nov).
+  Brings it back: Alfred resuming 40act app changes.
+- [ ] **Highlights reader on PIMCO's closed-end layout:** it labelled "Expenses" as before waivers and "Expenses
+  Excluding Waivers" as after (backwards), and gave preferred-share distributions the common-share role. Harmless for
+  PIMCO 1140392 (no waivers; off sync runs). Check whether the waiver labels flip on other funds with waivers.
 - [ ] **Money market funds in `holdings_count`:** 2061233's Fidelity Treasury Portfolio counts as a holding (14) and as
   cash in `nport_cash_total`; without it the count is 13. Brings it back: Alfred resuming 40act app changes.
 
@@ -50,3 +50,9 @@ When an item is picked up, it leaves this file for the journal.
 
 ## Clean-ups
 Kezess adds candidates here: path, what to delete or fold, and why. Gideon takes them as their own changes.
+- [ ] `apps/worker/src/cli/syncV2/runFund.ts`: split, 326 lines (314 before the 3 Nov sync v2 fixes), past the
+  250-line rule. The step bodies could go into their own modules by family: prospectus, reports, offers.
+- [ ] `packages/agents/src/runtime/adkRuntime.ts`: split, 868 lines. The retry policy (`attemptWithRetries`,
+  `isRetryableModelError`, `retryThinkingConfig`, the backoff helpers) could be its own module.
+- [ ] `packages/agents/src/extract/prospectusLanes/selectProspectusInForce.ts` `IN_FORCE_FORMS`: unexport it. No
+  importer outside its own file (`git grep -n IN_FORCE_FORMS` at `43d59597a`), and the same was true before.

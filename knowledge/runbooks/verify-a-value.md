@@ -32,6 +32,17 @@ stale, missing, or a ruling case) with the accession and the verbatim text.
 | Monthly flows | N-PORT B.6 |
 | Management fee and net operating expenses | N-CEN D.8 and D.9 |
 
+- **Copying a stored file:** `gcloud storage cp` crashed on this Mac on 3 Nov 2026 (`'Lock' object has no attribute
+  'is_fork_ctx'`) and then hung. `gcloud storage cat <gs path> > <local file>` works.
+- **Filing quirks seen:**
+  - **Inline XBRL can be mis-tagged.** Keystone 1788420's POS AMI 0001213900-25-057262 tags Class I's and Class Y's
+    total expenses the wrong way round. The printed table and the tagged lines both say Y 3.21%, I 3.11%. Check a
+    tagged total against the sum of its tagged lines.
+  - **PIMCO closed-end funds' highlights:**
+    - "Total Investment Return" is based on market price, not NAV.
+    - Distributions to preferred shareholders sit inside operations.
+    - The NAV bridge includes "Increase Resulting from Tender of ARPS".
+
 ## 3. The verdict
 - **Right / wrong / stale** (a newer filing says otherwise) / **missing** (the filing has it, we don't) / **blank
   is right** (the filing doesn't print it: blank stays blank).
