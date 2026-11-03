@@ -17,6 +17,11 @@ When an item is picked up, it leaves this file for the journal.
 - [ ] **A worker job for sync v2** (it is CLI only).
 - [ ] **Re-convert prod's lost-table documents** (norm-v3).
 - [ ] **The offer-results churn:** 2–6 rows re-added each run, then removed by source order.
+- [ ] **Neuberger 2041175's FY2025 annual report** is too large for one model read; it needs the report read in parts.
+  Brings it back: Alfred resuming 40act app changes.
+- [ ] **The four delisted PIMCO muni funds** (1140392, 1170300, 1181504, 1181506) are in the batch's fund list though
+  they filed to deregister in Sep 2025. Keep them, or drop them? Their highlights read fails on a combined
+  9-fund report. Brings it back: Alfred's or Florian's call on the fund list.
 - [ ] **Money market funds in `holdings_count`:** 2061233's Fidelity Treasury Portfolio counts as a holding (14) and as
   cash in `nport_cash_total`; without it the count is 13. Brings it back: Alfred resuming 40act app changes.
 
