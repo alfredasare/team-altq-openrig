@@ -1,0 +1,15 @@
+.env.local
+.run/
+# generated: settings.json by bin/build-desks.sh, the rest by OpenRig at launch
+desks/*/.claude/
+desks/*/.agents/
+desks/*/.openrig/
+desks/*/.mcp.json
+desks/*/CLAUDE.local.md
+inbox/
+exports/
+.secrets/
+__pycache__/
+.obsidian/workspace.json
+# a copy of OpenRig's built-in agent resources
+agents/shared

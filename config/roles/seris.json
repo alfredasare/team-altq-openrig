@@ -1,0 +1,31 @@
+{
+  "allow": [
+    "Bash(git worktree add *)",
+    "Bash(git -C * worktree add *)",
+    "Bash(git switch *)",
+    "Bash(git -C * switch *)",
+    "Bash(bun test*)",
+    "Bash(bun run *)",
+    "Bash(bun install*)",
+    "Bash(node *)",
+    "Bash(npx playwright *)"
+  ],
+  "deny": [
+    "Edit(//Users/alfredamoah/AltQ/40act/**)",
+    "Write(//Users/alfredamoah/AltQ/40act/**)",
+    "Bash(git add *)",
+    "Bash(git commit *)",
+    "Bash(git push *)",
+    "Bash(git -C * add *)",
+    "Bash(git -C * commit *)",
+    "Bash(git -C * push *)",
+    "Bash(gh pr create *)",
+    "Bash(gh pr merge *)",
+    "Bash(gh pr review *)"
+  ],
+  "deny_remove": [],
+  "repo_rules": [
+    "40act"
+  ],
+  "remote_control": "altq \u00b7 Seris"
+}

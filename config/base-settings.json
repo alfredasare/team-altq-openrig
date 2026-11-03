@@ -1,0 +1,148 @@
+{
+  "env": {
+    "CLAUDE_CODE_ENABLE_TODO_TOOLS": "1",
+    "DOCKER_HOST": "unix:///Users/alfredamoah/.orbstack/run/docker.sock"
+  },
+  "inputNeededNotifEnabled": true,
+  "agentPushNotifEnabled": true,
+  "permissions": {
+    "additionalDirectories": [
+      "/Users/alfredamoah/AltQ",
+      "/Users/alfredamoah/Epheotus"
+    ],
+    "allow": [
+      "Bash(git status*)",
+      "Bash(git log *)",
+      "Bash(git diff *)",
+      "Bash(git show *)",
+      "Bash(git fetch *)",
+      "Bash(git branch*)",
+      "Bash(git rev-parse *)",
+      "Bash(git remote -v)",
+      "Bash(git remote get-url *)",
+      "Bash(git worktree list*)",
+      "Bash(git merge-base *)",
+      "Bash(git blame *)",
+      "Bash(git grep *)",
+      "Bash(git -C * status*)",
+      "Bash(git -C * log *)",
+      "Bash(git -C * diff *)",
+      "Bash(git -C * show *)",
+      "Bash(git -C * fetch *)",
+      "Bash(git -C * branch*)",
+      "Bash(git -C * rev-parse *)",
+      "Bash(git -C * worktree list*)",
+      "Bash(git -C * merge-base *)",
+      "Bash(git -C * blame *)",
+      "Bash(git -C * grep *)",
+      "Bash(git ls-tree *)",
+      "Bash(git -C * ls-tree *)",
+      "Bash(grep *)",
+      "Bash(gh pr view *)",
+      "Bash(gh pr list *)",
+      "Bash(gh pr diff *)",
+      "Bash(gh pr checks *)",
+      "Bash(gh pr status*)",
+      "Bash(gh repo view *)",
+      "Bash(gh repo list *)",
+      "Bash(gh search *)",
+      "Bash(gh api *)",
+      "Bash(gh run list *)",
+      "Bash(gh run view *)",
+      "Bash(gh run watch *)",
+      "Bash(gh issue list *)",
+      "Bash(gh issue view *)",
+      "Bash(gh workflow list *)",
+      "Bash(gh workflow view *)",
+      "Bash(gh auth status*)",
+      "Bash(docker ps*)",
+      "Bash(docker images*)",
+      "Bash(docker logs *)",
+      "Bash(docker inspect *)",
+      "Bash(docker system df*)",
+      "Bash(docker context ls*)",
+      "Bash(docker --context orbstack ps*)",
+      "Bash(docker --context orbstack logs *)",
+      "Bash(curl *)",
+      "Bash(jq *)",
+      "Bash(yq *)",
+      "Bash(shasum *)",
+      "Bash(date*)",
+      "Bash(sort *)",
+      "Bash(uniq *)",
+      "Bash(column *)",
+      "Bash(tree *)",
+      "Bash(dig *)",
+      "Bash(nslookup *)",
+      "Bash(ps *)",
+      "Bash(lsof -i*)",
+      "Bash(lsof -nP *)",
+      "Bash(node --version*)",
+      "Bash(bun --version*)",
+      "Bash(rig *)",
+      "Bash(gcloud auth list*)",
+      "Bash(gcloud config list*)",
+      "Bash(gcloud storage ls *)",
+      "Bash(gcloud storage cat *)",
+      "Bash(gcloud run services list*)",
+      "Bash(gcloud run services describe *)",
+      "Bash(gcloud run revisions list *)",
+      "Bash(gcloud run jobs list*)",
+      "Bash(gcloud builds list*)",
+      "Bash(gcloud builds log *)",
+      "Bash(gcloud logging read *)",
+      "Bash(/Users/alfredamoah/AltQ/team-altq/bin/*)"
+    ],
+    "ask": [],
+    "deny": [
+      "Edit(//Users/alfredamoah/Epheotus/**)",
+      "Write(//Users/alfredamoah/Epheotus/**)",
+      "Bash(gh repo delete *)",
+      "Bash(gh auth token*)",
+      "Bash(git push --force*)",
+      "Bash(git push * --force*)",
+      "Bash(git push -f*)",
+      "Bash(git push * -f*)",
+      "Bash(pkill *)",
+      "Bash(killall *)",
+      "Read(//Users/alfredamoah/.ssh/**)",
+      "Read(//Users/alfredamoah/.aws/**)",
+      "Read(//Users/alfredamoah/.config/gh/**)",
+      "Read(//Users/alfredamoah/.docker/config.json)",
+      "Read(//Users/alfredamoah/Library/Application Support/sops/**)",
+      "Read(//Users/alfredamoah/AltQ/**/.env)",
+      "Read(//Users/alfredamoah/AltQ/**/.env.local)",
+      "Read(//Users/alfredamoah/AltQ/**/.env.*.local)",
+      "Read(//Users/alfredamoah/AltQ/**/.env.production)",
+      "Read(//Users/alfredamoah/AltQ/**/*.pem)",
+      "Read(//Users/alfredamoah/AltQ/**/*-sa.json)",
+      "Read(//Users/alfredamoah/.config/gcloud/**)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/alfredamoah/AltQ/team-altq/hooks/guard.py",
+            "timeout": 20,
+            "onFailure": "block"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/alfredamoah/AltQ/team-altq/hooks/notify.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

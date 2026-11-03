@@ -1,0 +1,12 @@
+{
+  "allow": [],
+  "deny": [
+    "Edit(//Users/alfredamoah/AltQ/40act/**)",
+    "Write(//Users/alfredamoah/AltQ/40act/**)"
+  ],
+  "deny_remove": [],
+  "repo_rules": [
+    "40act"
+  ],
+  "remote_control": "altq \u00b7 Arthur"
+}

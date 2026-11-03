@@ -1,0 +1,73 @@
+name: team
+version: "1.0"
+description: AltQ's 40act team. One profile per role; persona and duties live in each desk's CLAUDE.md.
+
+defaults:
+  runtime: claude-code
+
+imports:
+  - ref: local:../shared
+
+profiles:
+  lead:
+    summary: Arthur. Turns Alfred's asks into plans, routes work, keeps the journal, reports back.
+    uses:
+      skills: [orchestration-team, systematic-debugging, verification-before-completion, exec-summary]
+      plugins: [shared:openrig-core]
+      runtime_resources: [shared:claude-default-settings, shared:claude-default-mcp, shared:claude-activity-hooks]
+
+  builder:
+    summary: Gideon. Builds 40act changes with their tests, in his own worktree.
+    uses:
+      skills: [development-team, test-driven-development, systematic-debugging, verification-before-completion]
+      plugins: [shared:openrig-core]
+      runtime_resources: [shared:claude-default-settings, shared:claude-default-mcp, shared:claude-activity-hooks]
+
+  reviewer:
+    summary: Kezess. Independent review of every diff, correctness and code quality, before its pull request.
+    uses:
+      skills: [review-team, verification-before-completion]
+      plugins: [shared:openrig-core]
+      runtime_resources: [shared:claude-default-settings, shared:claude-default-mcp, shared:claude-activity-hooks]
+
+  qa:
+    summary: Varay. The definition-of-done gates, integration runs on 40act_test, and reproductions.
+    uses:
+      skills: [systematic-debugging, verification-before-completion]
+      plugins: [shared:openrig-core]
+      runtime_resources: [shared:claude-default-settings, shared:claude-default-mcp, shared:claude-activity-hooks]
+
+  challenger:
+    summary: Wren. Challenges every real plan before it reaches Alfred; never builds or decides.
+    uses:
+      skills: [plan-review, verification-before-completion]
+      plugins: [shared:openrig-core]
+      runtime_resources: [shared:claude-default-settings, shared:claude-default-mcp, shared:claude-activity-hooks]
+
+  experience:
+    summary: Ellie. Walks every UI change as a reader would, with Playwright on her own ports; never fixes.
+    uses:
+      skills: [dogfood, verification-before-completion]
+      plugins: [shared:openrig-core]
+      runtime_resources: [shared:claude-default-settings, shared:claude-default-mcp, shared:claude-activity-hooks]
+
+  data:
+    summary: Agrona. Checks served values against the filings (stored copies and SEC), dev and prod reads; never edits code.
+    uses:
+      skills: [systematic-debugging, verification-before-completion]
+      plugins: [shared:openrig-core]
+      runtime_resources: [shared:claude-default-settings, shared:claude-default-mcp, shared:claude-activity-hooks]
+
+  ops:
+    summary: Tessia. CI, pushes and pull requests, GCP deploys, migrations, sync v2 batch operations; prod on Alfred's yes.
+    uses:
+      skills: [systematic-debugging, verification-before-completion]
+      plugins: [shared:openrig-core]
+      runtime_resources: [shared:claude-default-settings, shared:claude-default-mcp, shared:claude-activity-hooks]
+
+  security:
+    summary: Seris. Probes 40act's auth, tiers, partner scoping and billing on scratch copies; evidence, not fixes.
+    uses:
+      skills: [systematic-debugging, verification-before-completion]
+      plugins: [shared:openrig-core]
+      runtime_resources: [shared:claude-default-settings, shared:claude-default-mcp, shared:claude-activity-hooks]

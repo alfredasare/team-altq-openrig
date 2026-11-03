@@ -1,0 +1,151 @@
+version: "0.2"
+name: altq
+summary: >
+  AltQ's 40act team. Arthur leads; Gideon (builder), Kezess (reviewer), Varay (QA), Ellie (experience),
+  Agrona (values against the filings), Tessia (release and operations) and Seris (security) work on the 40act
+  platform using Alfred's own CLIs, and Wren challenges plans. Gated actions (merges, pushes to main or
+  development, prod writes, deploys) always wait for Alfred; see CLAUDE.md and hooks/guard.py.
+
+culture_file: CULTURE.md
+
+# OpenRig's managed instructions go to CLAUDE.local.md; each desk's CLAUDE.md is ours.
+managed_blocks:
+  claude-code: CLAUDE.local.md
+
+workspace:
+  workspace_root: /Users/alfredamoah/AltQ
+  default_repo: 40act
+  knowledge_root: /Users/alfredamoah/AltQ/team-altq/knowledge
+  repos:
+    - { name: 40act, path: 40act, kind: project }
+
+# One pod per agent so each name shows as a group in OpenRig's views.
+# Seat addresses: <name>-<role>@altq  (e.g. arthur-lead@altq)
+pods:
+  - id: arthur
+    label: "Arthur · Lead"
+    members:
+      - id: lead
+        label: "Arthur Leywin"
+        role: lead
+        agent_ref: "local:agents/team"
+        profile: lead
+        runtime: claude-code
+        model: opus
+        cwd: desks/arthur
+
+  - id: gideon
+    label: "Gideon · Builder"
+    members:
+      - id: build
+        label: "Gideon"
+        role: builder
+        agent_ref: "local:agents/team"
+        profile: builder
+        runtime: claude-code
+        model: opus
+        cwd: desks/gideon
+
+  - id: kezess
+    label: "Kezess · Reviewer"
+    members:
+      - id: review
+        label: "Kezess Indrath"
+        role: reviewer
+        agent_ref: "local:agents/team"
+        profile: reviewer
+        runtime: claude-code
+        model: opus
+        cwd: desks/kezess
+
+  - id: varay
+    label: "Varay · QA"
+    members:
+      - id: qa
+        label: "Varay Aurae"
+        role: qa
+        agent_ref: "local:agents/team"
+        profile: qa
+        runtime: claude-code
+        model: opus
+        cwd: desks/varay
+
+  - id: wren
+    label: "Wren · Challenger"
+    members:
+      - id: challenge
+        label: "Wren Kain IV"
+        role: challenger
+        agent_ref: "local:agents/team"
+        profile: challenger
+        runtime: claude-code
+        model: opus
+        cwd: desks/wren
+
+  - id: ellie
+    label: "Ellie · Experience"
+    members:
+      - id: ux
+        label: "Ellie Leywin"
+        role: experience
+        agent_ref: "local:agents/team"
+        profile: experience
+        runtime: claude-code
+        model: opus
+        cwd: desks/ellie
+
+  - id: agrona
+    label: "Agrona · Data"
+    members:
+      - id: data
+        label: "Agrona Vritra"
+        role: data
+        agent_ref: "local:agents/team"
+        profile: data
+        runtime: claude-code
+        model: opus
+        cwd: desks/agrona
+
+  - id: tessia
+    label: "Tessia · Release & Ops"
+    members:
+      - id: ops
+        label: "Tessia Eralith"
+        role: ops
+        agent_ref: "local:agents/team"
+        profile: ops
+        runtime: claude-code
+        model: opus
+        cwd: desks/tessia
+
+  - id: seris
+    label: "Seris · Security"
+    members:
+      - id: security
+        label: "Seris Vritra"
+        role: security
+        agent_ref: "local:agents/team"
+        profile: security
+        runtime: claude-code
+        model: opus
+        cwd: desks/seris
+
+edges:
+  - { kind: delegates_to, from: arthur.lead, to: gideon.build }
+  - { kind: delegates_to, from: arthur.lead, to: kezess.review }
+  - { kind: delegates_to, from: arthur.lead, to: varay.qa }
+  - { kind: delegates_to, from: arthur.lead, to: wren.challenge }
+  - { kind: delegates_to, from: arthur.lead, to: ellie.ux }
+  - { kind: delegates_to, from: arthur.lead, to: agrona.data }
+  - { kind: delegates_to, from: arthur.lead, to: tessia.ops }
+  - { kind: delegates_to, from: arthur.lead, to: seris.security }
+  - { kind: delegates_to, from: gideon.build, to: kezess.review }
+  - { kind: delegates_to, from: gideon.build, to: ellie.ux }
+  - { kind: collaborates_with, from: varay.qa, to: gideon.build }
+  - { kind: collaborates_with, from: agrona.data, to: gideon.build }
+  - { kind: collaborates_with, from: seris.security, to: gideon.build }
+  - { kind: escalates_to, from: wren.challenge, to: arthur.lead }
+  - { kind: escalates_to, from: ellie.ux, to: arthur.lead }
+  - { kind: escalates_to, from: agrona.data, to: arthur.lead }
+  - { kind: escalates_to, from: tessia.ops, to: arthur.lead }
+  - { kind: escalates_to, from: seris.security, to: arthur.lead }
