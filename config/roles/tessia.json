@@ -17,8 +17,7 @@
     "Bash(actionlint*)"
   ],
   "deny": [
-    "Edit(//Users/alfredamoah/AltQ/40act/**)",
-    "Write(//Users/alfredamoah/AltQ/40act/**)"
+    "Edit(//Users/alfredamoah/AltQ/40act/**)"
   ],
   "deny_remove": [],
   "repo_rules": [

@@ -22,10 +22,13 @@ Two layers:
 - Varay and Seris: no commits or pushes.
 
 ## Modes
-- **Auto by default,** as on the Gaya team: Claude Code runs routine actions on its own judgment and asks about risky
-  ones. Set per seat with `rig seat set-permissions <seat> --mode auto`, from its next launch.
+- **The seats started in accept-edits mode** (3 Nov 2026): file edits run, and other commands prompt unless they are
+  allowed.
+- **Auto mode** lets Claude Code run routine actions on its own judgment and ask about risky ones. The Gaya team runs
+  in it since 29 Oct 2026, at Alfred's request, because supervised mode stopped its builder 47 times in a day.
+  Switching this team is Alfred's call: `rig seat set-permissions <seat> --mode auto`, from the seat's next launch.
 - **The gated and never tiers hold in every mode.**
-- **Back to supervised** for a seat: `rig seat set-permissions <seat> --mode acceptEdits --reason "<why>"`.
+- **Back to accept-edits** for a seat: `rig seat set-permissions <seat> --mode acceptEdits --reason "<why>"`.
 
 ## Changing a rule
 - **The guard:** add a case to `CASES` in `hooks/guard.py` with the expected result, change the check, and run

@@ -96,7 +96,6 @@
     "ask": [],
     "deny": [
       "Edit(//Users/alfredamoah/Epheotus/**)",
-      "Write(//Users/alfredamoah/Epheotus/**)",
       "Bash(gh repo delete *)",
       "Bash(gh auth token*)",
       "Bash(git push --force*)",
