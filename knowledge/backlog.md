@@ -17,6 +17,8 @@ When an item is picked up, it leaves this file for the journal.
 - [ ] **A worker job for sync v2** (it is CLI only).
 - [ ] **Re-convert prod's lost-table documents** (norm-v3).
 - [ ] **The offer-results churn:** 2–6 rows re-added each run, then removed by source order.
+- [ ] **Money market funds in `holdings_count`:** 2061233's Fidelity Treasury Portfolio counts as a holding (14) and as
+  cash in `nport_cash_total`; without it the count is 13. Brings it back: Alfred resuming 40act app changes.
 
 ## Waiting on Florian or Nil
 - [ ] Compare still shows the FY return and the latest offer cards, and fees are not hidden on Compare (Florian

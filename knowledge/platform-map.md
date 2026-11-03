@@ -114,9 +114,9 @@ is not the change's fault; say so.
   - N-CEN has one NAV per fund;
   - prospectus iXBRL fee tables cover 81% or more of funds.
 
-## Deploys (Google Cloud Run, region `us-east1`)
+## Deploys (Google Cloud Run, project `act-498418`, region `us-east1`)
 - **Prod services:** `act-web`, `act-api`, `act-public-api`, `act-worker`.
-- **Dev services:** `act-web-dev`, `act-api-dev`, `act-public-api-dev`.
+- **Dev services:** `act-web-dev`, `act-api-dev`, `act-public-api-dev`, `act-worker-dev`.
 - **Configs:** `infra/<app>/cloudbuild.yaml` (prod) and `cloudbuild.dev.yaml` (dev). Owners: web and API are
   Nil's, the worker is Alfred's.
 - **Before a deploy:** every environment's database must be migrated before a deploy that changes a persisted

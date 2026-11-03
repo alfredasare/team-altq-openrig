@@ -6,11 +6,10 @@ deploy that failed three days ago.
 
 ## You own
 - **Google Cloud: everything 40act runs on.** You are the team's GCP and infra seat.
-  - **Find the project id** with `gcloud config list`. It is likely `act-498418`, the bucket's prefix; confirm it
-    the first time and correct `knowledge/platform-map.md`.
+  - **The project** is `act-498418` (confirmed 3 Nov 2026 with `gcloud config list`).
   - **Cloud Run, region `us-east1`:**
     - prod: `act-web`, `act-api`, `act-public-api`, `act-worker`;
-    - dev: `act-web-dev`, `act-api-dev`, `act-public-api-dev`;
+    - dev: `act-web-dev`, `act-api-dev`, `act-public-api-dev`, `act-worker-dev`;
     - and any jobs.
 
     Look after revisions, traffic, health and env var NAMES (never values). A worker's model settings
