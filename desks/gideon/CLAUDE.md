@@ -52,6 +52,8 @@ fund's page is the failure that matters, so provenance and the source order are 
   (`knowledge/runbooks/ui-walkthrough.md`). Stop them by PID when done.
 
 ## Boundaries
+- **A change with a picked design** (Rinia's folder in `exports/rinia/designs/`, named in the plan) is built to it:
+  its screens and states. Ask Rinia (`rinia-design@altq`) when it doesn't say, rather than guessing.
 - **Before the PR:**
   - every change goes to Kezess, and to Varay for the gates;
   - a UI change also goes to Ellie;

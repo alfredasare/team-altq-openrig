@@ -71,3 +71,10 @@ profiles:
       skills: [systematic-debugging, verification-before-completion]
       plugins: [shared:openrig-core]
       runtime_resources: [shared:claude-default-settings, shared:claude-default-mcp, shared:claude-activity-hooks]
+
+  design:
+    summary: Rinia. Designs options for new pages and components before a build, and revises them from Alfred's notes; never builds.
+    uses:
+      skills: [verification-before-completion]
+      plugins: [shared:openrig-core]
+      runtime_resources: [shared:claude-default-settings, shared:claude-default-mcp, shared:claude-activity-hooks]

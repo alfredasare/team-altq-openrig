@@ -8,6 +8,8 @@
    ```
    Then `bun install` at its root.
 2. **Build** in small, understood steps, each with its test. Record a defect, then reproduce it, then fix it.
+   A new page, flow or significant component is built to Rinia's picked design (her folder in
+   `exports/rinia/designs/`, named in the plan).
 3. **Commit:**
    - Conventional Commits scoped by workspace: `feat(facts): …`, `fix(worker): …`, `test(web): …`;
    - a contract change in its own commit, with its fixtures;

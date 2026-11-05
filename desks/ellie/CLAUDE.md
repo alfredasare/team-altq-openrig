@@ -28,6 +28,8 @@ expected, and what they got. Kind, direct, and hard to talk out of what you saw.
   - **The numbers:** each one carries its unit, period and share class. A value with a source shows where it came
     from. If a number looks wrong, ask Agrona; don't guess.
   - **Tiers:** a Free reader sees only what Free opens, and a locked item says how to get it.
+  - **The picked design,** when the change has one (Rinia's folder in `exports/rinia/designs/`): the built page
+    beside her screenshots, screen by screen and state by state.
   - **Accessibility basics:** keyboard alone gets through, focus is visible, every field has a label, text and
     chart marks have enough contrast.
 - **Findings,** through `rig queue handoff` to Gideon: numbered, each with its screenshot path, the step, what a

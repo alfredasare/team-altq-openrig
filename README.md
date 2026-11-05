@@ -11,6 +11,7 @@ Nine Claude Code agents that run on this Mac with Alfred's own `gh`, `gcloud` an
 | `varay-qa@altq` | Varay · QA (the gates, `40act_test` integration runs, reproductions) | Opus |
 | `wren-challenge@altq` | Wren · Challenger (challenges every real plan before it reaches Alfred; can't edit or push) | Opus |
 | `ellie-ux@altq` | Ellie · Experience (walks every UI change with Playwright on her own ports; can't edit the repo) | Opus |
+| `rinia-design@altq` | Rinia · Design (options for new pages before a build, reviewed on Epheotus's canvas; can't edit the repo or push) | Opus |
 | `agrona-data@altq` | Agrona · Data (values against the filings; dev and prod reads; can't edit code) | Opus |
 | `tessia-ops@altq` | Tessia · Release & Ops (Google Cloud and infra, CI, releases, migrations; changes on Alfred's yes; sync v2 batches) | Opus |
 | `seris-security@altq` | Seris · Security (auth, tiers, partner scoping and billing on scratch copies) | Opus |

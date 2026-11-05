@@ -2,7 +2,7 @@ version: "0.2"
 name: altq
 summary: >
   AltQ's 40act team. Arthur leads; Gideon (builder), Kezess (reviewer), Varay (QA), Ellie (experience),
-  Agrona (values against the filings), Tessia (release, Google Cloud and infra) and Seris (security) work on the 40act
+  Rinia (design), Agrona (values against the filings), Tessia (release, Google Cloud and infra) and Seris (security) work on the 40act
   platform using Alfred's own CLIs, and Wren challenges plans. Gated actions (merges, pushes to main or
   development, prod writes, deploys) always wait for Alfred; see CLAUDE.md and hooks/guard.py.
 
@@ -130,6 +130,18 @@ pods:
         model: opus
         cwd: desks/seris
 
+  - id: rinia
+    label: "Rinia · Design"
+    members:
+      - id: design
+        label: "Rinia Darvi"
+        role: design
+        agent_ref: "local:agents/team"
+        profile: design
+        runtime: claude-code
+        model: opus
+        cwd: desks/rinia
+
 edges:
   - { kind: delegates_to, from: arthur.lead, to: gideon.build }
   - { kind: delegates_to, from: arthur.lead, to: kezess.review }
@@ -149,3 +161,6 @@ edges:
   - { kind: escalates_to, from: agrona.data, to: arthur.lead }
   - { kind: escalates_to, from: tessia.ops, to: arthur.lead }
   - { kind: escalates_to, from: seris.security, to: arthur.lead }
+  - { kind: delegates_to, from: arthur.lead, to: rinia.design }
+  - { kind: escalates_to, from: rinia.design, to: arthur.lead }
+  - { kind: collaborates_with, from: rinia.design, to: gideon.build }
