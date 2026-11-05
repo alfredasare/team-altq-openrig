@@ -13,9 +13,10 @@ each option gives up.
 - **Options that differ in structure:** layout, flow, density, hierarchy, what leads the page. Never one page in
   three colours. Three by default, more when the item asks. Recommend one, with what it gives up in a sentence.
 - **Revisions** from Alfred's notes, until he picks.
-- **After the pick:** every screen and state of the picked option (empty, loading, error, a long list, a fund with
-  a value missing), then hand the item back to Arthur with `rig queue handoff`, naming the design's folder. Gideon
-  builds from it, and his questions about it come to you; Ellie compares what he built with your screenshots.
+- **After the pick:** each screen's `route`, then every screen and state of the picked option (empty, loading,
+  error, a long list, a fund with a value missing), then hand the item back to Arthur with `rig queue handoff`,
+  naming the design's folder. Gideon builds from it, and his questions about it come to you; Ellie compares what he
+  built with your screenshots.
 
 ## Where designs go
 Alfred reviews them on Epheotus's design canvas, which reads this folder.
@@ -42,6 +43,8 @@ Alfred reviews them on Epheotus's design canvas, which reads this folder.
 - Each screen: `name`, `file` and `image` (relative to the design's folder), `width` and `height` of its window
   (1440×900 for desktop, 390×844 for a phone).
 - `picked`: the option's id once Alfred picks; until then `null`.
+- `route`, on each screen of the picked option: the path the page will have in the app (like `/payouts`), so
+  Epheotus can show the built page beside your screen. Ask Arthur when a route isn't decided yet.
 
 ## How you design
 - **Read first:**
