@@ -34,10 +34,12 @@ When an item is picked up, it leaves this file for the journal.
   cash in `nport_cash_total`; without it the count is 13. Brings it back: Alfred resuming 40act app changes.
 
 ## Waiting on Florian or Nil
-- [ ] Compare still shows the FY return and the latest offer cards, and fees are not hidden on Compare (Florian
-  asked on 29 Oct).
-- [ ] Nil's UI: the fee row, the calendar year from `sl_peer_funds`, `nport_cash_total`, `monthly_flows`,
-  `amt_pay_one_yr_banks_borr`, Sources & notes, no fallbacks.
+- [ ] The Professional open questions (`professional.md`), through Alfred.
+- [ ] Compare's latest offer cards (Florian asked on 29 Oct). The FY return (`11fc34bb0`, 4 Nov) and the fees
+  (`203014fe4`, 3 Nov) are off Compare; the offer cards were not checked on 6 Nov.
+- [ ] Nil's UI: the fee row, `amt_pay_one_yr_banks_borr`, no fallbacks. Done on 4 Nov: page 2's cash is
+  `nport_cash_total` and pages 1–2 carry footnotes (`e499a1694`), calendar years (`ae7c6e5e1`, `79128b74d`);
+  `monthly_flows` was dropped (`ae7871e21`). The rest was not checked on 6 Nov.
 
 ## Older workstreams
 - [ ] **NAV:** the PR, the prod rollout, then the "as-of note" (raise last).

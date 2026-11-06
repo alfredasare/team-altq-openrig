@@ -34,7 +34,7 @@ fund's page is the failure that matters, so provenance and the source order are 
   1. Wait until Kezess has no findings, Varay's gates are green, and Ellie, Agrona or Seris have finished where
      the change needed them.
   2. Push the branch by name, `--dry-run` first.
-  3. Open the PR into the branch Arthur named (`development`, or `feature/new-sync` for sync v2). Use a plain
+  3. Open the PR into the branch Arthur named (`development`, sync v2 included: `feature/new-sync` merged on 4 Nov 2026). Use a plain
      description and no attribution lines.
 
   Alfred merges.

@@ -53,8 +53,9 @@ where they're strongest, and own the outcome. Calm, direct, no theatrics. You sp
   3. Where they apply: Ellie walks the UI, Agrona checks the values, Seris probes.
   4. Gideon opens the PR into the integration branch, and Alfred merges.
   5. Tessia sees deploys through on Alfred's yes.
-- **Costs.** Before any run that calls a model beyond exactly what was asked (an ingest, a batch, a rebuild, a
-  re-read), ask Alfred with the funds, the expected cost and the time.
+- **Costs.** No budget approvals for the key work on dev (Alfred, 6 Nov 2026): correct values come first, and each
+  key set is proven on a few funds before it spreads (`knowledge/runbooks/add-a-key.md`). Ask Alfred before anything
+  on prod, and before work beyond the key task (an ingest, a run over every fund, a rebuild or `--fresh`).
 - **Hand-test notes from Alfred** arrive from Epheotus as a `page-notes-….json` in your inbox, with a picture of each
   part: each note names the page, the device, the element (or an area) and his words. Record each defect and route
   it, as for any defect he finds.

@@ -19,8 +19,16 @@ file current. A ruling that conflicts with a filing is raised through Arthur, ne
   - The list is `STATIC_KEYS` in `sourceOrder.ts`.
   - `investment_focus` (the Mandate) and `accredited_investor` are copied once, never extracted.
   - `cash_flow_period_start` stays dynamic (Alfred).
-  - Nil's tag keys `management_fee`, `net_operating_expenses`, `amt_pay_one_yr_banks_borr` and `monthly_flows` are
-    dynamic (Alfred: "Don't make them static").
+  - Nil's tag keys `management_fee`, `net_operating_expenses` and `amt_pay_one_yr_banks_borr` are dynamic
+    (Alfred: "Don't make them static"). `monthly_flows` went on 4 Nov (Florian: one redemption metric).
+- **A key read from one form tag takes the tag's name in snake_case** (Nil, 2 Nov; Florian's key plan, 3 Nov):
+  N-CEN `managementFee` is `management_fee`. Exception, 6 Nov meeting: the N-CEN ticker is `share_class_ticker`, not
+  `common_stock_ticker_symbol`.
+- **Retired keys** (`packages/facts/src/syncV2/retiredKeys.ts`, `fallback.ts` `RETIRED_FALLBACK_KEYS`): sync v2 stops
+  writing them and the source order step removes what is stored. 3 Nov: `holdings_footing_gap_pct`,
+  `since_inception_cumulative_return_pct`, `disclosed_change`, `share_class_ticker` (the prospectus read). 4 Nov:
+  `incentive_fee_ratio_pct`, `offer_proration_factor`, `nav_reporting_basis`. Professional's chapter 01 page reads
+  `nav_reporting_basis` and `since_inception_cumulative_return_pct`, an open question (`professional.md`).
 - **Blank stays blank** (Alfred, 30 Oct; refined 1 Nov). Never store 0 for a printed "None" or a missing item. A fee
   is 0 only when the filing states the fund charges none. A fee table's printed "None" alone is not that statement
   (Alfred, 3 Nov; Partners Group 1447247's Class I and M sales load).
@@ -30,6 +38,17 @@ file current. A ruling that conflicts with a filing is raised through Arthur, ne
   model.
 - **Interval funds' pricing date stays blank** when the notice only says "normally the same as the deadline"
   (Alfred, 31 Oct).
+
+## Professional keys: the 6 Nov 2026 meeting
+The per-key decisions are on Nil's "V2 Keys To Add" page (`artifacts.md`) and in `professional.md`. The rules among
+them:
+- **Removed:** `distribution_discretion`, `minimum_investment`, `eighty_percent_policy`, `leverage_limit`,
+  `shares_outstanding` (to discuss later) and `common_stock_ticker_symbol`. Removed keys stay on the page, struck.
+- **One minimum:** a filing that states only "minimum investment" stores it as `minimum_investment_initial`.
+- **Tickers:** `share_class_ticker`, from N-CEN (`commonStockTickerSymbol` per class), not `common_stock_ticker_symbol`.
+- **`net_capital_transactions` becomes `net_inflows`:** computed from N-PORT Fund Info, subscriptions − redemptions.
+- **`board_member_title`:** N-CEN's `isDirectorInterestedPerson`.
+- **"Decide first" is gone** (Alfred): an overlap with an existing key is recorded as an audit note, not a gate.
 
 ## Lawrence, 2 Nov 2026 (AQFID pages 1–2)
 - **Gains:** the statement's printed totals for every fund, currency lines included.
@@ -47,6 +66,29 @@ file current. A ruling that conflicts with a filing is raised through Arthur, ne
   there.
 
 ## Florian
+- **4 Nov** (answers to "Sync v2 keys: open questions for Florian", `artifacts.md`; built the same day):
+  - **One redemption metric:** N-PORT's `monthly_redemption_amount`, which AQFID page 2 sums over twelve months.
+    Gone: `monthly_flows`, `offer_proration_factor`, the N-PORT offer formulas (`offer_amount_accepted_usd`,
+    `offer_shares_accepted_check`) and the cap floor check. `repurchase_offers_per_year` (months with N-PORT
+    redemptions) was tried and removed: it read 8 to 12 offers a year for 7 of 22 dev funds whose prospectus says
+    quarterly.
+  - `incentive_fee_ratio_pct` retires; the prospectus `incentive_fee_pct` stays.
+  - `net_capital_transactions` is the report's statement of changes figure for a twelve-month column; N-PORT's sum
+    is `net_capital_transactions_check`. For this key alone a column must foot to be served (Alfred). Renamed
+    `net_inflows` on 6 Nov, see above.
+  - An N-CEN NAV per share of 0 is no figure (a members' capital fund reports a total only).
+  - Unfunded commitments come from the notes even when the word is missing: a commitment less its funded part; a
+    master fund's Unfunded Commitments column; a column of N/A on every line is 0.
+  - `total_return_pct_check` goes: the audited figure replaces N-PORT's. Where the highlights print a gross and a net
+    total return, `total_return` is the net one.
+  - A borrowings line printing a dash is 0 debt; no borrowings line is no figure.
+  - `nav_reporting_basis` retires (the Dashboard no longer reads the return series).
+  - **Standing rule:** the Dashboard and Compare use only keys the AQFID pages use, kept simple, with troublesome
+    keys hidden. Their 1-year return is AQFID page 1's figure: twelve N-PORT monthly returns compounded to the newest
+    month (Nil, `f9f9f8486`).
+- **3 Nov: Professional Tier Key Sources,** his page (`artifacts.md`): for each Professional key keep, drop, replace,
+  check or scope, with a source. Validate it against the filings and the code; never copy it. The 5 Nov audit of
+  chapters 07–10 found problems in each chapter (`professional.md`).
 - **2 Nov:** the static/dynamic split above. The Free keys were cut section by section with Alfred (rounds 1–6,
   `history.md`).
 - **29 Oct** (Free value check answers):
@@ -89,6 +131,17 @@ file current. A ruling that conflicts with a filing is raised through Arthur, ne
   (`packages/contracts/src/nav.ts`).
 
 ## Alfred: how the team works with data
+- **Correct values first; no budget approvals for the key work on dev** (6 Nov 2026). Each key set is tested on a
+  few funds and fixed before it spreads (`runbooks/add-a-key.md`). Prod and runs over every fund still ask.
+- **Read the filing before calling a value wrong** (4 Nov): the stored copy in the bucket or the SEC page. A bounds
+  check or two keys disagreeing is a lead, not a finding. Report misread vs genuine with the quoted line.
+- **Link the filing behind every figure** in a write-up for Alfred or Florian (4 Nov): `primaryDocumentUrl` from
+  `filings` by accession, on the fund or figure it supports.
+- **Prod is updated after dev is done** (4 Nov): a prod blank from a step not yet run there is known, not a finding.
+- **Key work in order** (5 Nov): find every key in use, compare with Florian's plan, lock the list, then code.
+  Record code bugs met during an inventory; don't stop to fix them.
+- **Pages and questions for others** (5 Nov): only what the reader needs, detail behind a click. A question says
+  what is proposed, what goes wrong (with the number that shows it), then the question, in everyday words.
 - Tell him before any run that calls a model or writes beyond what he named (an ingest, a batch, a rebuild), with
   the funds and the cost, and wait.
 - "Verified" must mean every served value is right. Never keep a known-wrong value because a rule said keep.

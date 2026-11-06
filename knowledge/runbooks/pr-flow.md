@@ -1,7 +1,7 @@
 # From change to pull request
 
-1. **Branch:** a worktree from `origin/development`, or the integration branch Arthur names (`feature/new-sync` for
-   sync v2):
+1. **Branch:** a worktree from `origin/development` (sync v2 too, since `feature/new-sync` merged on 4 Nov 2026), or
+   the integration branch Arthur names:
    ```
    git -C /Users/alfredamoah/AltQ/40act fetch origin
    git -C /Users/alfredamoah/AltQ/40act worktree add /Users/alfredamoah/AltQ/.worktrees/<seat>/<branch> -b <branch> origin/development
@@ -31,7 +31,7 @@
    git -C <worktree> push --dry-run origin <branch>
    git -C <worktree> push origin <branch>
    ```
-   Never to `main`, `development` or `feature/new-sync`: the guard asks.
+   Never to `main` or `development`: the guard asks.
 7. **Open the PR** into the target branch:
    - `gh pr create --base development --head <branch>`;
    - a title in the commit style;

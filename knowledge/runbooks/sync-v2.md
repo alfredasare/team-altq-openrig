@@ -28,7 +28,9 @@ FACTS_COLLECTION_SUFFIX=_v2 MONGODB_DB=40act_dev bun --env-file=/Users/alfredamo
 
 **Check prompt versions before naming a model step.** On 2 Nov 2026 a `--steps` run naming `statements` called the
 model for 23 funds ($6.33), because the prompt had moved to `@6` and the stored readings were `@5`. A version bump
-means a re-read; say so and the cost before running.
+means a re-read of every fund the run names, so name only the funds you mean (`--only`). For the key work on dev no
+cost approval is needed (Alfred, 6 Nov 2026); a new key on the prospectus reader re-reads each fund's whole prospectus
+($0.22–0.51 a fund), not just the new key.
 
 ## Rules
 - **One run per fund at a time.** Check `ps` before starting; never start a second run on a fund that is running.
@@ -47,7 +49,8 @@ means a re-read; say so and the cost before running.
 
 ## Alfred's Windows VM (prod batches)
 - **Setup:**
-  - Git and Bun 1.3.14; the repo on `feature/new-sync`; `bun install --frozen-lockfile`.
+  - Git and Bun 1.3.14; the repo on `development` (it was `feature/new-sync` until that merged on 4 Nov 2026);
+    `bun install --frozen-lockfile`.
   - `apps/worker/.env` with only:
     - `MONGODB_URI` (prod), `MONGODB_DB=40act_dev`, `FACTS_COLLECTION_SUFFIX=_v2`;
     - `GEMINI_API_KEY`;
@@ -68,7 +71,10 @@ means a re-read; say so and the cost before running.
   - the count of `runs\v2\*.json` (finished) and `*.failed.json` (to re-run);
   - `Select-String -Path runs\v2.log -Pattern 'failed, nothing more|ERR '`.
 - **The 3 Nov 2026 batch:** 263 prod funds (live, with a stored report, without the AIP Alternative Lending Funds
-  1709447 and 1709406). No seat runs sync v2 against prod funds until the journal says it finished.
+  1709447 and 1709406). It has run: on 6 Nov 2026, 258 of prod's 264 semi-liquid funds had `facts_v2` rows, the
+  newest written 4 Nov 21:03 UTC. Without rows: 1709406, 1709447, 1930054, 1944366, 1975736 and 1658645, all removed
+  from the batch on purpose (Alfred, 6 Nov): prod's sync v2 set is 258 funds. Whether the `*.failed.json` re-runs happened is not recorded. Every prod run still needs
+  Alfred's yes.
 - **Not synced (Alfred, 3 Nov 2026):** the four PIMCO muni funds 1140392, 1170300, 1181504 and 1181506, delisted
   in Aug 2025 and deregistering; listed closed-end funds, not interval or tender offer funds. Take them off any fund
   list a run uses.

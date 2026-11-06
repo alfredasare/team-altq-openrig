@@ -34,6 +34,7 @@ Your own role and persona are in your desk's `CLAUDE.md`. Paths below are relati
   - `knowledge/rulings.md`: Florian's and Lawrence's product rulings;
   - `knowledge/people.md` and `knowledge/artifacts.md`: who's who, and the shared pages and docs;
   - `knowledge/backlog.md`: deferred work;
+  - `knowledge/professional.md`: the Professional tier's keys, the current workstream (from 6 Nov 2026);
   - `knowledge/runbooks/`: procedures. Read the relevant one **before** acting on anything it covers.
 - **Asked about past work?** Read the journal and `history.md` first, then `git log`. After a compaction, read
   the journal's newest days before anything else.
@@ -50,8 +51,9 @@ Your own role and persona are in your desk's `CLAUDE.md`. Paths below are relati
    `knowledge/approvals.md`.
 2. **Alfred merges pull requests.** No agent merges, approves or enables auto-merge.
 3. **Branches.** Nobody pushes to `main` or `development`. Every branch starts from `origin/development`, unless
-   Arthur names an integration branch (sync v2 work: `origin/feature/new-sync`). Its PR targets that branch,
-   never `main`. Push by name (`git -C <worktree> push origin <branch>`), with `--dry-run` first.
+   Arthur names an integration branch, and its PR targets that branch, never `main`. Sync v2 work too:
+   `feature/new-sync` merged into `development` on 4 Nov 2026 (#460) and is no longer a base. Push by name
+   (`git -C <worktree> push origin <branch>`), with `--dry-run` first.
 4. **Work in your own git worktree** (`~/AltQ/.worktrees/<your name>/<branch>`), never in Alfred's checkout
    `~/AltQ/40act`: he works there, often with uncommitted changes. Remove the worktree once its PR merges.
 5. **Prod is another cluster with the same database name.** The prod database is host `40act.jpjv34a`, and it is
@@ -71,13 +73,18 @@ Your own role and persona are in your desk's `CLAUDE.md`. Paths below are relati
 7. **Never print a secret.** Name keys, not values. Your settings refuse to read `.env` files, and
    `bin/db.sh` is how you reach a database. Alfred sets secrets himself. Never repeat a token, key or connection
    string you happen to see. Stripe: only keys starting `sk_test_`, ever.
-8. **Model calls cost money.** Tell Arthur, who tells Alfred, before any run that calls a model beyond exactly
-   what was asked: an ingest, a batch, a rebuild, a re-read. Give the funds and the expected cost.
-   - **Sync v2 replays by default:** a stored reading under the current prompt costs $0.
-   - **Re-reads:** `--fresh` and `--reread` read again, and so does a prompt version bump.
+8. **Model calls.** Correct values come first (Alfred, 6 Nov 2026: "No budget approvals please. We just want the
+   values to be correct").
+   - **Key work on dev runs without asking:** the model reads a key set needs on the funds being tested, then on
+     the dev test funds (`knowledge/runbooks/add-a-key.md`). Keep each run to the funds in the test (`--only`).
+   - **Still ask Alfred, through Arthur:** anything on prod; and work beyond the key task (an ingest, a run over
+     every fund, a `--rebuild` or `--fresh`).
+   - **Sync v2 replays by default:** a stored reading under the current prompt costs $0. A prompt version bump
+     makes the next run read again; that is how a changed prompt is tried. The guard still asks for `--fresh` and
+     `--reread`, so key work uses the version bump instead.
    - **One run per fund at a time.**
-   - **The prod batch:** it has been running on Alfred's Windows VM since 3 Nov 2026. No seat runs sync v2 against
-     prod funds until the journal says it finished.
+   - **Prod:** the VM batch of 3 Nov 2026 has run. On 6 Nov all 258 funds in prod's sync v2 set had `facts_v2` rows
+     (newest row 4 Nov); six semi-liquid funds were removed from the set on purpose. Every prod run still needs Alfred's yes.
 9. **Commit messages** are Conventional Commits scoped by workspace (`fix(facts): …`), with no `Co-Authored-By` or
    `Claude-Session` lines. PR descriptions carry no attribution lines. Never `git add -A`; add files by name.
    Contract (schema) changes land in their own commit, with their fixtures.

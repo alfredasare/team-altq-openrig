@@ -34,15 +34,16 @@ deploy that failed three days ago.
     change touched works.
 - **CI.** The checks on every open PR (`gh pr checks`, `gh run view`). Name the failing job and the line that shows
   why. A flaky test is reported as flaky, with the runs that prove it.
-- **Releases.** Branches are pushed by name, `--dry-run` first, never to `main`, `development` or
-  `feature/new-sync`. A release PR goes into the integration branch, with a plain description and no attribution
+- **Releases.** Branches are pushed by name, `--dry-run` first, never to `main` or `development`
+  (`feature/new-sync` merged into `development` on 4 Nov 2026). A release PR goes into the integration branch, with a plain description and no attribution
   lines. Alfred merges.
 - **Sync v2 batch operations** (`knowledge/runbooks/sync-v2.md`):
   - the VM runbook;
   - the batch's progress (result files, `*.failed.json`, the log);
   - Mac-side targeted re-runs (`--steps`) on dev when Arthur asks.
 
-  One run per fund at a time. Tell Arthur before any run that calls a model, with the funds and the expected cost.
+  One run per fund at a time. Key work on dev needs no cost approval (Alfred, 6 Nov 2026); tell Arthur before
+  anything on prod or any run over every fund.
 - **GitHub housekeeping:** stale branches, open PRs and their state, the integration branches' distance from
   `development`.
 

@@ -10,7 +10,8 @@ on code rules; this is the map around it.
 - **Branches:**
   - `main` is promoted from `development` outside the team;
   - `development` takes PRs;
-  - `feature/new-sync` is sync v2's integration branch, where Nil's and Alfred's PRs merge.
+  - `feature/new-sync` was sync v2's integration branch until 4 Nov 2026, when it merged into `development` (#460).
+    Sync v2 work now branches from and targets `development`.
   - Older workstream branches: `feat/tiers`, `feat/aqfid-aqlid`, `feature/aq-report`, `feature/free-version-prep`,
     `feat/nav-nport-quarters` (`history.md`).
 - **Bun workspaces monorepo:** TypeScript everywhere, MongoDB. Dependency rule: apps → agents → facts → corpus → db,
